@@ -1,5 +1,5 @@
-from Sidearm_Data import Sidearm_Data
-from Data_Playground import (
+from sidearm_data import Sidearm_Data
+from cleaner import (
     clean_team_data,
     clean_individual_data,
     clean_game_by_game_data,
@@ -26,8 +26,8 @@ cedarville_url = f"https://yellowjackets.cedarville.edu/sports/mens-basketball/s
 
 # follow these variables as an example to plug in new teams
 season = "2023-24"
-team_name = "Tiffin University"
-url = tiffin_url
+team_name = "Ohio Dominican University"
+url = odu_url
 
 # Use scraper to grab a_tags and category headers
 scraper = Sidearm_Data(team=team_name, url=url, year=season)

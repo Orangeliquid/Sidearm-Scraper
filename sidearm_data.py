@@ -1,6 +1,6 @@
 import pandas as pd
 import json
-from Sidearm_Scraper import Sidearm_Scraper
+from sidearm_scraper import Sidearm_Scraper
 
 
 class Sidearm_Data:

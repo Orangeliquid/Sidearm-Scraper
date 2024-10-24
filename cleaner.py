@@ -1,7 +1,4 @@
-import pandas as pd
 import json
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 
 # Cleans the team category further by eliminating unnecessary titles and extra layers of JSON
@@ -119,6 +116,7 @@ def clean_individual_data(file: str):
                 "Rebounds AVG": player.get("Rebounds AVG", ""),
                 "PF": player.get("PF PF", ""),
                 "AST": player.get("AST AST", ""),
+                "TO": player.get("TO TO", ""),
                 "STL": player.get("STL STL", ""),
                 "BLK": player.get("BLK BLK", "")
             }
@@ -324,35 +322,3 @@ def clean_category_leaders_data(file: str):
 # clean_category_leaders_data(file_to_clean)
 
 # -------------------------------------------------------------------------------------------------------------------
-# # Replace the old team data with the new structure
-# data["Ohio Dominican University 2023-24 Men's Basketball Cumulative Statistics"]['Team'][
-#     'Team Stats (5-22, 2-18)'] = organized_data
-#
-# # Optionally, save the modified JSON back to a file
-# with open('Ohio_Dominican_University_Tables_Data_2023-24_Modified.json', 'w') as f:
-#     json.dump(data, f, indent=4)
-#
-# # Print the new structure to verify
-# print(json.dumps(organized_data, indent=4))
-
-# Convert the specific table into a DataFrame
-# df = pd.DataFrame(team_data)
-
-# Print the DataFrame to check the contents
-# print(df)
-
-# Assuming 'Player_Player' and 'Scoring_AVG' are columns in the DataFrame
-# df['Player'] = df['Player Player'].apply(lambda x: x.split(',')[0])  # Extract player names
-# df['FG%'] = pd.to_numeric(df['FG FG%'], errors='coerce')  # Convert scoring to numeric
-#
-# # Sort by scoring average
-# df_sorted = df.sort_values(by='FG%', ascending=False)
-
-# Plot the top 10 players by scoring average
-# plt.figure(figsize=(10, 6))
-# plt.barh(df_sorted['Player'].head(10), df_sorted['FG%'].head(10), color='skyblue')
-# plt.xlabel('FG%')
-# plt.ylabel('Player')
-# plt.title('Top 10 Players by FG%')
-# plt.gca().invert_yaxis()  # Invert y-axis to have the highest scorer on top
-# plt.show()

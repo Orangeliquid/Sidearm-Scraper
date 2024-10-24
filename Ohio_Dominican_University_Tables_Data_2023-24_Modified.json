@@ -157,6 +157,7 @@
                     "Rebounds AVG": 10.4,
                     "PF": 14,
                     "AST": 15,
+                    "TO": 12,
                     "STL": 8,
                     "BLK": 6
                 },
@@ -183,6 +184,7 @@
                     "Rebounds AVG": 3.9,
                     "PF": 67,
                     "AST": 54,
+                    "TO": 59,
                     "STL": 16,
                     "BLK": 3
                 },
@@ -209,6 +211,7 @@
                     "Rebounds AVG": 4.2,
                     "PF": 71,
                     "AST": 92,
+                    "TO": 80,
                     "STL": 40,
                     "BLK": 9
                 },
@@ -235,6 +238,7 @@
                     "Rebounds AVG": 5.5,
                     "PF": 20,
                     "AST": 7,
+                    "TO": 19,
                     "STL": 3,
                     "BLK": 5
                 },
@@ -261,6 +265,7 @@
                     "Rebounds AVG": 3.6,
                     "PF": 41,
                     "AST": 18,
+                    "TO": 24,
                     "STL": 12,
                     "BLK": 9
                 },
@@ -287,6 +292,7 @@
                     "Rebounds AVG": 3.5,
                     "PF": 54,
                     "AST": 31,
+                    "TO": 25,
                     "STL": 19,
                     "BLK": 12
                 },
@@ -313,6 +319,7 @@
                     "Rebounds AVG": 6.5,
                     "PF": 36,
                     "AST": 21,
+                    "TO": 19,
                     "STL": 9,
                     "BLK": 2
                 },
@@ -339,6 +346,7 @@
                     "Rebounds AVG": 1.8,
                     "PF": 16,
                     "AST": 13,
+                    "TO": 11,
                     "STL": 4,
                     "BLK": 0
                 },
@@ -365,6 +373,7 @@
                     "Rebounds AVG": 2.1,
                     "PF": 45,
                     "AST": 50,
+                    "TO": 24,
                     "STL": 16,
                     "BLK": 3
                 },
@@ -391,6 +400,7 @@
                     "Rebounds AVG": 3.1,
                     "PF": 27,
                     "AST": 18,
+                    "TO": 13,
                     "STL": 10,
                     "BLK": 8
                 },
@@ -417,6 +427,7 @@
                     "Rebounds AVG": 1.0,
                     "PF": 5,
                     "AST": 6,
+                    "TO": 4,
                     "STL": 2,
                     "BLK": 0
                 },
@@ -443,6 +454,7 @@
                     "Rebounds AVG": 1.8,
                     "PF": 8,
                     "AST": 7,
+                    "TO": 3,
                     "STL": 4,
                     "BLK": 1
                 },
@@ -469,6 +481,7 @@
                     "Rebounds AVG": 2.4,
                     "PF": 0,
                     "AST": 0,
+                    "TO": 12,
                     "STL": 0,
                     "BLK": 0
                 },
@@ -495,6 +508,7 @@
                     "Rebounds AVG": 30.3,
                     "PF": 404,
                     "AST": 332,
+                    "TO": 305,
                     "STL": 143,
                     "BLK": 58
                 },
@@ -521,6 +535,7 @@
                     "Rebounds AVG": 39.9,
                     "PF": 352,
                     "AST": 431,
+                    "TO": 279,
                     "STL": 175,
                     "BLK": 74
                 }
@@ -549,6 +564,7 @@
                     "Rebounds AVG": 3.8,
                     "PF": 53,
                     "AST": 62,
+                    "TO": 60,
                     "STL": 33,
                     "BLK": 8
                 },
@@ -575,6 +591,7 @@
                     "Rebounds AVG": 4.3,
                     "PF": 46,
                     "AST": 40,
+                    "TO": 46,
                     "STL": 8,
                     "BLK": 3
                 },
@@ -601,6 +618,7 @@
                     "Rebounds AVG": 4.2,
                     "PF": 36,
                     "AST": 13,
+                    "TO": 22,
                     "STL": 9,
                     "BLK": 7
                 },
@@ -627,6 +645,7 @@
                     "Rebounds AVG": 10.7,
                     "PF": 6,
                     "AST": 6,
+                    "TO": 4,
                     "STL": 4,
                     "BLK": 2
                 },
@@ -653,6 +672,7 @@
                     "Rebounds AVG": 4.8,
                     "PF": 7,
                     "AST": 4,
+                    "TO": 6,
                     "STL": 0,
                     "BLK": 2
                 },
@@ -679,6 +699,7 @@
                     "Rebounds AVG": 3.6,
                     "PF": 43,
                     "AST": 22,
+                    "TO": 18,
                     "STL": 15,
                     "BLK": 9
                 },
@@ -705,6 +726,7 @@
                     "Rebounds AVG": 7.5,
                     "PF": 13,
                     "AST": 4,
+                    "TO": 8,
                     "STL": 2,
                     "BLK": 1
                 },
@@ -731,6 +753,7 @@
                     "Rebounds AVG": 2.5,
                     "PF": 37,
                     "AST": 41,
+                    "TO": 21,
                     "STL": 16,
                     "BLK": 3
                 },
@@ -757,6 +780,7 @@
                     "Rebounds AVG": 1.8,
                     "PF": 16,
                     "AST": 13,
+                    "TO": 11,
                     "STL": 4,
                     "BLK": 0
                 },
@@ -783,6 +807,7 @@
                     "Rebounds AVG": 3.1,
                     "PF": 27,
                     "AST": 18,
+                    "TO": 13,
                     "STL": 10,
                     "BLK": 8
                 },
@@ -809,6 +834,7 @@
                     "Rebounds AVG": 1.8,
                     "PF": 8,
                     "AST": 7,
+                    "TO": 3,
                     "STL": 4,
                     "BLK": 1
                 },
@@ -835,6 +861,7 @@
                     "Rebounds AVG": 0.3,
                     "PF": 1,
                     "AST": 1,
+                    "TO": 2,
                     "STL": 0,
                     "BLK": 0
                 },
@@ -861,6 +888,7 @@
                     "Rebounds AVG": 2.8,
                     "PF": 0,
                     "AST": 0,
+                    "TO": 11,
                     "STL": 0,
                     "BLK": 0
                 },
@@ -887,6 +915,7 @@
                     "Rebounds AVG": 29.4,
                     "PF": 293,
                     "AST": 231,
+                    "TO": 225,
                     "STL": 105,
                     "BLK": 44
                 },
@@ -913,6 +942,7 @@
                     "Rebounds AVG": 41.9,
                     "PF": 242,
                     "AST": 343,
+                    "TO": 190,
                     "STL": 128,
                     "BLK": 52
                 }
