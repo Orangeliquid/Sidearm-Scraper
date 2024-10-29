@@ -43,6 +43,8 @@ class Player:
         self.TOV = None  # Turnovers
         self.FOUL = None  # Personal Fouls
         self.THREES = None  # 3PT Field Goals Made
+        self.UPER = None
+        self.PER = None
 
         # Call the attribute setter to populate values from the data dictionary
         self.attribute_setter(data)
@@ -81,64 +83,6 @@ class Player:
             last_name = split_name[0].split(",")[0]
             self.PLAYER = f"{first_name} {last_name}"
 
-
-# all urls sorted by first appearance in ODU schedule - non-conference is not sorted
-team_urls = {
-    "Ohio Dominican": "https://ohiodominicanpanthers.com/sports/mens-basketball/stats/",
-    "Hillsdale": "https://hillsdalechargers.com/sports/mens-basketball/stats/",
-    # Need Northwood
-    "Findlay": "https://findlayoilers.com/sports/mens-basketball/stats/",
-    "Thomas More": "https://thomasmoresaints.com/sports/mens-basketball/stats/",
-    "Tiffin": "https://gotiffindragons.com/sports/mens-basketball/stats/",
-    "Malone": "https://malonepioneers.com/sports/mens-basketball/stats/",
-    "Kentucky Wesleyan": "https://tnutrojans.com/sports/mens-basketball/stats/",
-    "Ashland": "https://goashlandeagles.com/sports/mens-basketball/stats/",
-    "Cedarville": "https://yellowjackets.cedarville.edu/sports/mens-basketball/stats/",
-    "Lake Erie": "https://lakeeriestorm.com/sports/mens-basketball/stats/",
-    "Walsh": "https://athletics.walsh.edu/sports/mens-basketball/stats/",
-
-    "Central State": "https://maraudersports.com/sports/mens-basketball/stats/",  # not conference
-    "Missouri S&T": "https://minerathletics.com/sports/mens-basketball/stats/",  # not conference
-    "Roosevelt": "https://rooseveltlakers.com/sports/mens-basketball/stats/",  # not conference
-    "Lincoln": "https://lubluetigers.com/sports/mens-basketball/stats/",  # not conference
-
-            }
-
-# create list of all team names from team_urls
-team_urls_keys = list(team_urls.keys())
-
-# create list of conference teams
-conference_teams = team_urls_keys[:-4]
-
-# create list of out of conference teams
-non_conference_teams = team_urls_keys[-4:]
-
-# set season to desired season to get data
-season = "2023-24"
-
-# set a list to filter out rows we don't want
-exclusions = ["Team  TM Team", "Total", "Opponents"]
-
-# Create a list to store all Player instances
-players_list = []
-
-# iterate through team_urls_keys
-for team_key in team_urls_keys:
-    team_name = team_key
-    url = team_urls[team_key]
-    scraper = Sidearm_Data(team=team_name, url=url, year=season, create_json=False)
-    overall_lvl = scraper.tables_data['Overall']
-    conference_team = team_name in conference_teams
-
-    # Loop through players excluding "TEAM", "TOTAL", "OPPONENTS"
-    for tag in overall_lvl:
-        if tag['Player Player'] not in exclusions:
-            new_player = Player(tag, team_name, conference_team)
-            players_list.append(new_player)  # Append each player to the list
-            print(f"NEW PLAYER: {new_player.PLAYER}")  # Print the player's name to verify
-    print("-" * 40)
-
-print(len(players_list))  # 224 total player obj created from 15 links in team_urls
 
 # -----------------------------------------------------------------------------------------------------------------
 # team_name = "Ohio Dominican University"
