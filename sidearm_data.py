@@ -4,7 +4,7 @@ from sidearm_scraper import Sidearm_Scraper
 
 
 class Sidearm_Data:
-    def __init__(self, team: str, url: str, year: str):
+    def __init__(self, team: str, url: str, year: str, create_json: bool):
         # Scrape title, categories, a_tags
         self.team_name = team
         self.url = url + year
@@ -15,10 +15,17 @@ class Sidearm_Data:
         self.article_title = None
         self.categories = None
         self.a_tags = None
+
+        # call data_scrape method
         self.data_scrape()
+
+        # call organize_tables_by_category method
         self.organize_tables_by_category()
-        self.new_file_name = None
-        self.finalize_json()
+
+        # call method to create_json if True
+        if create_json:
+            self.new_file_name = None
+            self.finalize_json()
 
     def data_scrape(self):
         self.scraper.fetch_page()
