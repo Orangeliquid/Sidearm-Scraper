@@ -1,7 +1,7 @@
 from model.player import Player
 from sidearm_data import Sidearm_Data
 from util.constants import TEAMS
-from util.per_util import calcuate_pers
+from util.per_util import calculate_pers
 
 
 # set season to desired season to get data
@@ -26,13 +26,21 @@ for team in TEAMS:
             new_player = Player(tag, team.name, team.is_conference)
             players_list.append(new_player)  # Append each player to the list
             print(f"NEW PLAYER: {new_player.PLAYER}")  # Print the player's name to verify
+            # print(f"self.HAS_PLAYED: {new_player.HAS_PLAYED}")
     print("-" * 40)
 
 print(len(players_list))  # 224 total player obj created from 15 links in team_urls
 
 # TODO: Filter out players with 0 minutes?
-calcuate_pers(players_list)
+calculate_pers(players_list)
 
 for player in players_list:
     if player.TEAM == "Ohio Dominican":
-        print(f"Player: {player.PLAYER} Team: {player.TEAM} PER: {player.PER}")
+        print(f"Player: {player.PLAYER} | Team: {player.TEAM} | PER: {player.PER} | HAS_PLAYED: {player.HAS_PLAYED}")
+
+# Check to see how many player have not played 1 minute
+# count = 0
+# for player in players_list:
+#     if not player.HAS_PLAYED:
+#         count += 1
+# print(count)

@@ -28,6 +28,7 @@ class Player:
         self.CONFERENCE = conference
         self.PLAYER = None
         self.MP = None  # Minutes Played
+        self.HAS_PLAYED = None  # Boolean: set to True if self.MP is above 0 else False
         self.PTS = None  # Points
         self.AST = None  # Assists
         self.OREB = None  # Offensive Rebounds
@@ -82,6 +83,12 @@ class Player:
             first_name = split_name[1]
             last_name = split_name[0].split(",")[0]
             self.PLAYER = f"{first_name} {last_name}"
+
+        # Check if self.MP is valid and set HAS_PLAYED
+        if isinstance(self.MP, (int, float)) and self.MP > 0:
+            self.HAS_PLAYED = True
+        else:
+            self.HAS_PLAYED = False
 
 
 # -----------------------------------------------------------------------------------------------------------------
