@@ -6,3 +6,4 @@ class Team:
     name: str
     url: str
     is_conference: bool
+    source: str

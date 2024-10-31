@@ -1,4 +1,3 @@
-from sidearm_data import Sidearm_Data
 
 """
 stats needed:
@@ -46,9 +45,14 @@ class Player:
         self.THREES = None  # 3PT Field Goals Made
         self.UPER = None
         self.PER = None
+        self.NOT_SIDEARM = ["Northwood"]
 
-        # Call the attribute setter to populate values from the data dictionary
-        self.attribute_setter(data)
+        # call attribute_setter based on self.TEAM
+        if self.TEAM not in self.NOT_SIDEARM:
+            # Call the attribute setter to populate values from the data dictionary
+            self.attribute_setter(data)
+        elif self.TEAM == "Northwood":
+            self.northwood_attribute_setter(data)
 
     def attribute_setter(self, data: dict):
         # Map dictionary keys to class attributes
@@ -89,6 +93,11 @@ class Player:
             self.HAS_PLAYED = True
         else:
             self.HAS_PLAYED = False
+
+    def northwood_attribute_setter(self, data: dict):
+        for key, attr in data.items():
+            setattr(self, key, attr)
+
 
 
 # -----------------------------------------------------------------------------------------------------------------

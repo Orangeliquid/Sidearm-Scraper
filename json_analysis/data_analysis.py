@@ -45,7 +45,6 @@ def graph_data(url: str):
     if top_key_choice != 0:
         df = df.transpose()
 
-
     # Check the structure after transposing
     lowest_lvl_keys = list(df.keys())
     for key, num in enumerate(lowest_lvl_keys):
@@ -56,7 +55,6 @@ def graph_data(url: str):
     # drop Total Team and Opponents from df so the graphs aren't too large in values
     if top_key_choice != 0:
         df = df.drop(index=["Team ", "Total", "Opponents"], errors='ignore')  # beware "Team " has a space after it
-
 
     # Print the DataFrame to check the contents
     print(df.head())
