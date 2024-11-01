@@ -98,6 +98,11 @@ class Player:
         for key, attr in data.items():
             setattr(self, key, attr)
 
+        # Check if self.MP is valid and set HAS_PLAYED
+        if isinstance(self.MP, (int, float)) and self.MP > 0:
+            self.HAS_PLAYED = True
+        else:
+            self.HAS_PLAYED = False
 
 
 # -----------------------------------------------------------------------------------------------------------------
