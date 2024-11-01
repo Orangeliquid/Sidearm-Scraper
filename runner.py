@@ -3,6 +3,7 @@ from sidearm_data import Sidearm_Data
 from util.constants import TEAMS
 from util.per_util import calculate_pers
 from northwood_scraper import northwood_scraper
+import re
 
 
 # set season to desired season to get data
@@ -31,19 +32,24 @@ for team in TEAMS:
                 # print(f"self.HAS_PLAYED: {new_player.HAS_PLAYED}")
         print("-" * 40)
 
-    # TODO add logic for scraping northwood - conditional + loop
     elif team.source == "Northwood":
-        # scraper = northwood_scraper(url=team.url, season=season)
-        pass
+        scraper = northwood_scraper(url=team.url, season=season)
+
+        for name, data in scraper.items():
+            # Clean and assign data in Player instantiation
+            cleaned_name = re.sub(r'\s+', ' ', data['PLAYER']).strip()
+            data['PLAYER'] = cleaned_name
+            new_player = Player(data=data, team="Northwood", conference=True)
+            players_list.append(new_player)
 
 
-print(len(players_list))  # 224 total player obj created from 15 links in team_urls
+print(len(players_list))  # 239 total player obj created from 16 links in team_urls
 
 # TODO: Filter out players with 0 minutes?
 calculate_pers(players_list)
-
+output_list = ["Ohio Dominican", "Northwood"]
 for player in players_list:
-    if player.TEAM == "Ohio Dominican":
+    if player.TEAM in output_list:
         print(f"Player: {player.PLAYER} | Team: {player.TEAM} | PER: {player.PER} | HAS_PLAYED: {player.HAS_PLAYED}")
 
 # Check to see how many player have not played at least 1 minute
