@@ -86,8 +86,11 @@ def calculate_uPER(player: Player,
                    lg_fta,
                    lg_pf
                    ):
+    if player.MP == 0:
+        player.UPER = 0  # Set uPER to 0 if the player hasn't played
+        return
 
-    ast_to_fgm = team_ast / team_fgm
+    ast_to_fgm = team_ast / team_fgm if team_fgm != 0 else 0  # address possible ZeroDivisionError
 
     uPER = (1/player.MP) * (
         player.THREES 
