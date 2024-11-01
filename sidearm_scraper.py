@@ -1,10 +1,12 @@
 from curl_cffi import requests as cureq
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 
 class Sidearm_Scraper:
     def __init__(self, url):
         self.url = url
+        self.base_url = self.extract_partial_url()
         self.soup = None
         self.article_content = None
         self.article_title = None
@@ -106,4 +108,62 @@ class Sidearm_Scraper:
             if table:
                 print(f"Table: {table}")
 
+    # attempts to extract game url from Game-By-Game - Team data
+    def extract_game_urls(self):
+        if not self.article_content:
+            raise Exception("Article content is not available. Call extract_article_content() first.")
+
+        sections = self.article_content.find_all('section')
+
+        # Check if there are enough sections
+        if len(sections) < 7:
+            print("Not enough sections found.")
+            return []
+
+        team_game_by_game = sections[6]
+        tbodies = team_game_by_game.find_all('tbody')
+
+        # List to hold the game URLs
+        game_urls = []
+
+        # Iterate through each tbody
+        for tbody in tbodies:
+            # Find all rows within the current tbody
+            rows = tbody.find_all('tr')
+            for row in rows:
+                # Find the <td> element that contains the <a> tag
+                link_td = row.find('td', class_='text-no-wrap')
+                if link_td:
+                    link = link_td.find('a')
+                    if link and link.get('href'):
+                        full_url = link['href']
+                        if full_url not in game_urls:
+                            game_urls.append(f"{self.base_url}{full_url}")
+                            print(f"Found game URL: {full_url}")  # Debugging output
+
+        print("All Game URLs found:", game_urls)
+        return game_urls
+
+    def extract_partial_url(self):
+        parsed_url = urlparse(self.url)
+        base_url = f"{parsed_url.scheme}://{parsed_url.netloc}"
+        return base_url
+
+
 # transitioning over to using pandas to scrape the tables
+if __name__ == '__main__':
+    odu_url = "https://ohiodominicanpanthers.com/sports/mens-basketball/stats/"
+    odu_url_partial = "https://ohiodominicanpanthers.com"
+    hillsdale_url = "https://hillsdalechargers.com/sports/mens-basketball/stats/"
+    hillsdale_url_partial = "https://hillsdalechargers.com"
+
+    season = "2023-24"
+    team_name = "Ohio Dominican University"
+    url = hillsdale_url
+    scraper = Sidearm_Scraper(url=url)
+    scraper.fetch_page()
+    scraper.extract_article_content()
+    scraper.extract_partial_url()
+    game_url_list = scraper.extract_game_urls()
+    for url in game_url_list:
+        print(url)
