@@ -139,7 +139,7 @@ class Sidearm_Scraper:
                         full_url = link['href']
                         if full_url not in game_urls:
                             game_urls.append(f"{self.base_url}{full_url}")
-                            print(f"Found game URL: {full_url}")  # Debugging output
+                            # print(f"Found game URL: {full_url}")  # Debugging output
 
         print("All Game URLs found:", game_urls)
         return game_urls
@@ -159,7 +159,7 @@ if __name__ == '__main__':
 
     season = "2023-24"
     team_name = "Ohio Dominican University"
-    url = hillsdale_url
+    url = odu_url
     scraper = Sidearm_Scraper(url=url)
     scraper.fetch_page()
     scraper.extract_article_content()
