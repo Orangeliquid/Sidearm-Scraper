@@ -5,4 +5,4 @@
 !LICENSE.txt
 .idea/
 __pycache__/
-!credentials.json
+credentials.json
