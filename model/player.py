@@ -50,9 +50,15 @@ class Player:
         # call attribute_setter based on self.TEAM
         if self.TEAM not in self.NOT_SIDEARM:
             # Call the attribute setter to populate values from the data dictionary
-            self.attribute_setter(data)
+            print("attribute setter called")
+            if " at " in self.TEAM:
+                self.game_by_game_setter(data)
+                print("game_by_game setter called")
+            else:
+                self.attribute_setter(data)
         elif self.TEAM == "Northwood":
             self.northwood_attribute_setter(data)
+            print("northwood setter called")
 
     def attribute_setter(self, data: dict):
         # Map dictionary keys to class attributes
@@ -103,6 +109,38 @@ class Player:
             self.HAS_PLAYED = True
         else:
             self.HAS_PLAYED = False
+
+    def game_by_game_setter(self, data: dict):
+        """
+        Sets attributes for the instance based on the provided data and calculates derived values.
+        """
+        print("game_by_game method called")
+
+        # Set attributes from the data dictionary
+        for key, attr in data.items():
+            setattr(self, key, attr)
+
+        # Determine if the player has played
+        self.HAS_PLAYED = isinstance(self.MP, (int, float)) and self.MP > 0
+
+        # Calculate Field Goal Percentage (FGP) if FGM and FGA are valid
+        fgm = getattr(self, 'FGM', 0)
+        fga = getattr(self, 'FGA', 0)
+
+        if isinstance(fgm, (int, float)) and isinstance(fga, (int, float)) and fga > 0:
+            self.FGP = round((fgm / fga) * 100, 2)
+        else:
+            self.FGP = 0.0  # Default FGP if FGM or FGA is invalid or FGA is zero
+
+        # Calculate Field Goal Percentage (FGP) if FGM and FGA are valid
+        ftm = getattr(self, 'FTM', 0)
+        fta = getattr(self, 'FTA', 0)
+
+        if isinstance(ftm, (int, float)) and isinstance(fta, (int, float)) and fta > 0:
+            self.FTP = round((ftm / fta) * 100, 2)
+        else:
+            self.FTP = 0.0  # Default FGP if FGM or FGA is invalid or FGA is zero
+
 
 
 # -----------------------------------------------------------------------------------------------------------------
