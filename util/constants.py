@@ -18,3 +18,17 @@ TEAMS = [
     Team("Roosevelt", "https://minerathletics.com/sports/mens-basketball/stats/", False, "Sidearm"),
     Team("Lincoln", "https://lubluetigers.com/sports/mens-basketball/stats/", False, "Sidearm")
 ]
+
+CONFERENCE_TEAMS = ["Ohio Dominican",
+                    "Hillsdale",
+                    "Northwood",
+                    "Findlay",
+                    "Thomas More",
+                    "Tiffin",
+                    "Malone",
+                    "Kentucky Wesleyan",
+                    "Ashland",
+                    "Cedarville",
+                    "Lake Erie",
+                    "Walsh"
+                    ]
