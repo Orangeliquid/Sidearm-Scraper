@@ -2,11 +2,16 @@ import pandas as pd
 from curl_cffi import requests as cureq
 from sidearm_scraper import Sidearm_Scraper
 import re
+from bs4 import BeautifulSoup
+from util.constants import CONFERENCE_TEAMS
 
 
 def fetch_tables(url_passed: str):
     # Fetch data and parse tables
     response = cureq.get(url_passed, impersonate="chrome")
+    soup = BeautifulSoup(response.content, 'html.parser')
+    h3_tags = soup.find_all('h3')
+    game_title = (h3_tags[1].get_text(strip=True), h3_tags[2].get_text(strip=True))
     tables_found = pd.read_html(response.content)
     away_team_table = tables_found[1]
     home_team_table = tables_found[4]
@@ -94,7 +99,8 @@ def fetch_tables(url_passed: str):
                     all_players_data[cleaned_name] = {'PLAYER': cleaned_name}
 
                 # Add team name to the player's data
-                all_players_data[cleaned_name]['Team'] = team_name
+                all_players_data[cleaned_name]['TEAM'] = team_name
+                all_players_data[cleaned_name]['GAME'] = game_title
 
                 # Process each column in the row
                 for column_name in row.index:
@@ -113,13 +119,40 @@ def fetch_tables(url_passed: str):
     return all_players_data
 
 
+def determine_home_away(game_data: dict):
+    # a few odu players
+    odu_players = ["Elijah Hinton", "Terrance Broughton", "Zac Kimball", 'JeJuan Weatherspoon']
+    for key, val in game_data.items():
+        if key in odu_players:
+            print(game_data[key]['TEAM'])
+            return game_data[key]['TEAM']
+
+
+def clean_title(players_list: dict):
+    game_title = players_list[list(players_list.keys())[0]]['GAME']
+    print(game_title)
+    cleaned_game_title = " at ".join(game_title)
+    away_team, home_team = game_title[0], game_title[1]
+    away_team_stripped = " ".join(away_team.split(" ", 2)[:-1])
+    home_team_stripped = " ".join(home_team.split(" ", 2)[:-1])
+    return cleaned_game_title, away_team, home_team, away_team_stripped, home_team_stripped
+
+
+def determine_conference(team_one: str, team_two: str):
+    is_conference = False
+    if team_one.title() not in CONFERENCE_TEAMS or team_two.title() not in CONFERENCE_TEAMS:
+        return is_conference
+    else:
+        return True
+
+
 if __name__ == '__main__':
     odu_url = "https://ohiodominicanpanthers.com/sports/mens-basketball/stats/"
     odu_url_partial = "https://ohiodominicanpanthers.com"
-    hillsdale_url = "https://hillsdalechargers.com/sports/mens-basketball/stats/"
-    hillsdale_url_partial = "https://hillsdalechargers.com"
+    # hillsdale_url = "https://hillsdalechargers.com/sports/mens-basketball/stats/"
+    # hillsdale_url_partial = "https://hillsdalechargers.com"
 
-    season = "2023-24"
+    season = "2024-25"
     team_name = "Ohio Dominican University"
     url = odu_url
     scraper = Sidearm_Scraper(url=url)
@@ -131,3 +164,6 @@ if __name__ == '__main__':
     print(url_one)
     players_cleaned = fetch_tables(url_one)
     print(players_cleaned)
+    # determine home or away so player data can be sorted to only odu
+    odu_home_away = determine_home_away(players_cleaned)
+    determine_conference(players_cleaned)
